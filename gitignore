@@ -9,6 +9,10 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+### qemu config files
+*.img
+user-data
+
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
