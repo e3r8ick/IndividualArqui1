@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+set -eux
+
 sudo apt-get install cloud-image-utils qemu-system-arm qemu-efi
 
 # Get the image.
