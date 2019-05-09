@@ -8,6 +8,7 @@
 	.type	main, @function
 main:
 .LFB0:
+	mov r8, #3883
 	.cfi_startproc
 	pushq	%rbp
 	.cfi_def_cfa_offset 16
