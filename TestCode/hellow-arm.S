@@ -1,4 +1,4 @@
-lobal _start
+.global _start
 
 _start:
     push {r11, lr}    /* Start of the prologue. Saving Frame Pointer and LR onto the stack */
