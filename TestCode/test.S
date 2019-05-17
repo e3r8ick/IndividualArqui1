@@ -1,1 +1,1 @@
-mov r0, #1        /* setting up local variables (a=1). This also serves as setting up the first parameter for the max function */
+mov %eax, 01
