@@ -33,5 +33,4 @@ LOOP:
 	 MOV PC,LR                 @Return back to main function
  
 EXIT:
-	END					  @End the function
 
