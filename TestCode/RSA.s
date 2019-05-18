@@ -1,4 +1,7 @@
 __main:
+	
+
+ITSPRIME:
 	 MOV R0,#12               @Number to check
 	 CMP R0,#01               @Comparing with 01
 	 BEQ PRIME                @If equal => prime

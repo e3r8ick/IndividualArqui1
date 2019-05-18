@@ -1,7 +1,5 @@
 import random
 
-
-
 ##Determining the greatest common divisor
 
 def gcd(a, b):
@@ -105,3 +103,5 @@ def rsa(p,q, message):
     print "Decrypting message with public key ", public ," . . ."
     print "Your message is:"
     print decrypt(public, encrypted_msg)
+
+rsa(17,29,"erick")
