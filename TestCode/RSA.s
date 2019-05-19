@@ -4,7 +4,7 @@ __main:
 	BL ITSPRIME
 
 ITSPRIME:
-	 MOV R0,               @Number to check
+	 MOV R0,R4              @Number to check
 	 CMP R0,#01               @Comparing with 01
 	 BEQ PRIME                @If equal => prime
 	 CMP R0,#02               @Compare with 02
@@ -27,7 +27,7 @@ NOTPRIME:
 
 PRIME:
 	MOV R3,#1                 @The number is prime
-	
+
 STOP:
 	B EXIT                             @Jump EXIT
  
