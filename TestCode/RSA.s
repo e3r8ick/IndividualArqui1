@@ -18,10 +18,10 @@ UP:
 	 BEQ PRIME                @All possible numbers are done => prime
 	 B UP                            @If not repeat until end
 NOTPRIME:
-	 LDR R3,=0x00000000       @The number is not prime
+	 MOV R3,#0                @The number is not prime
 	 B STOP                             @Jump STOP
 PRIME:
-	LDR R3,=0x11111111       @The number is prime
+	MOV R3,#1                 @The number is prime
 STOP:
 	B EXIT                             @Jump EXIT
  
