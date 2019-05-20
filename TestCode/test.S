@@ -1,7 +1,3 @@
-AREA RSA, CODE
-		ENTRY
-		EXPORT __main
-
 __main
 	 MOV R0,#12               ;Number to check
 	 CMP R0,#01               ;Comparing with 01

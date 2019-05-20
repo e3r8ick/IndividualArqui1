@@ -1,0 +1,6 @@
+
+*.bin
+
+\.vscode/ipch/9de31f1403377659/hellow\.ipch
+
+*.ipch
