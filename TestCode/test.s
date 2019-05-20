@@ -26,7 +26,7 @@ PRIME:
 STOP:
 	B EXIT                  @Jump EXIT
 
-DIVISION:                    @Function for division operation
+DIVISION:                   @Function for division operation
 	 MOV R8,R0              @Copy of data from main function
 	 MOV R9,R2              @Copy of divider from main function
 
