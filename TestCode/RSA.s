@@ -100,5 +100,10 @@ GENERATOR:
 	SUB R2,R12,#1			@ q - 1
 	MUL R3,R1,R2			@ L = (p-1)*(q-1)
 
+ARRAY_GENERATOR:
+	MOV R4,#1				@ init the array
+	STR R4,=0x00000444		@ save register
+	LDR R7,=0x00000444		@ get register
+
 EXIT:						@Finish
 

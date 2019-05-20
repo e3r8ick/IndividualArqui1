@@ -59,7 +59,7 @@ _printf:
     LDR R0, =printf_str     @ R0 contains formatted string address
     BL _printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
-   
+	
 .data
 
 .balign 4
