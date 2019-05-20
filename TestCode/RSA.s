@@ -22,11 +22,11 @@ UP_A:
 
 NOTPRIME_A:
 	MOV R3,#0       		@The number is not prime
-	B ITSPRIME_B           	@Jump STOP
+	B ITSPRIME_B           	@Jump ITSPRIME_B
 
 PRIME_A:
 	MOV R3,#1       		@The number is prime
-	B ITSPRIME_B            @Jump STOP
+	B ITSPRIME_B            @Jump ITSPRIME_B
  
 DIVISION_A:                 @Function for division operation
 	MOV R8,R0              	@Copy of data from main function
@@ -59,13 +59,11 @@ UP_B:
 
 NOTPRIME_B:
 	MOV R4,#0       		@The number is not prime
-	B STOP                 	@Jump STOP
+	B CHECK_PRIME_A        	@Jump CHECK_PRIME_A
 
 PRIME_B:
 	MOV R4,#1       		@The number is prime
-
-STOP:
-	B EXIT                  @Jump EXIT
+	B CHECK_PRIME_A        	@Jump CHECK_PRIME_A
  
 DIVISION_B:                 @Function for division operation
 	MOV R8,R0              	@Copy of data from main function
@@ -78,6 +76,23 @@ LOOP_B:
 	BPL LOOP_B              @Repeats the loop if subtraction is still needed
 	MOV PC,LR              	@Return back to main function
 
- 
+CHECK_PRIME_A:
+	CMP R3,#1               @To check if the first number was prime
+	BEQ CHECK_PRIME_B       @If equal => prime
+	B EXIT					@If not, exit (sistem alert)
+
+CHECK_PRIME_B:
+	CMP R4,#1               @To check if the second number was prime
+	BEQ CHECK_EQUAL		    @If equal => prime
+	B EXIT					@If not, exit (sistem alert)
+
+CHECK_EQUAL:
+	CMP R11,R12             @To check if the numbers are the same
+	BEQ EXIT			    @If equal => EXIT (sistem alert)
+	B GENERATOR				@Jump to the function how generates the keypair
+
+GENERATOR:
+	MUL R0,R11,R12			@ n = p*q
+
 EXIT:						@Finish
 
