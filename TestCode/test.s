@@ -57,7 +57,7 @@ _exit:
 _printf:
     PUSH {LR}               @ store the return address
     LDR R0, =printf_str     @ R0 contains formatted string address
-    BL printf               @ call printf
+    BL _printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
    
 .data
