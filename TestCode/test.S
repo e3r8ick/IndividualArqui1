@@ -29,7 +29,7 @@ STOP:
 DIVISION:                    @Function for division operation
 	 MOV R8,R0              @Copy of data from main function
 	 MOV R9,R2              @Copy of divider from main function
-     
+
 LOOP:                     
 	 SUB R8,R8,R9           @Successive subtraction for division
 	 ADD R10,R10,#01        @Counter for holding the result of division
@@ -38,4 +38,3 @@ LOOP:
 	 MOV PC,LR              @Return back to main function
 
 EXIT:
-	END					    @End the function
