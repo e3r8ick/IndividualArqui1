@@ -5,9 +5,9 @@ __main:
 ITSPRIME_A:
 	MOV R0,R11				@Move the first number to check
 	CMP R0,#01             	@Comparing with 01
-	BEQ PRIME              	@If equal => prime
+	BEQ PRIME_A             @If equal => prime
 	CMP R0,#02             	@Compare with 02
-	BEQ PRIME              	@If equal => prime
+	BEQ PRIME_A             @If equal => prime
 	MOV R1,R0              	@Copy the number in R1
 	MOV R2,#02             	@Initial divider
 
@@ -61,7 +61,7 @@ NOTPRIME_B:
 	MOV R4,#0       		@The number is not prime
 	B STOP                 	@Jump STOP
 
-PRIME2:
+PRIME_B:
 	MOV R4,#1       		@The number is prime
 
 STOP:
