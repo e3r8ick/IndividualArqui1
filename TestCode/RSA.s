@@ -55,7 +55,7 @@ UP_B:
 	ADD R2,R2,#01          	@If not increment divider and check
 	CMP R2,R1              	@Compare divider with the number
 	BEQ PRIME_B            	@All possible numbers are done => prime
-	B UP                   	@If not repeat until end
+	B UP_B                 	@If not repeat until end
 
 NOTPRIME_B:
 	MOV R4,#0       		@The number is not prime
