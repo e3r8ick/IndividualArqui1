@@ -102,8 +102,8 @@ GENERATOR:
 
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
-	MOV R5,#0				@ init the array
-	STR R4,[R5,0x0000B328]		@ save register
+	MOV R5,#0x0000B328		@ init the array
+	STR R4,[R5,#0]			@ save register
 	LDR R7,=0x0000B328		@ get register
 
 EXIT:						@Finish
