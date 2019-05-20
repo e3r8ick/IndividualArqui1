@@ -1,6 +1,7 @@
 ##########COMANDS###################################################
 layout asm      # Mostrar el código 
 nexti           # Próxima instrucción
+next            # Terminar ejecución
 stepi           # Proximo step
 info registers  #info de los registers
 

@@ -5,6 +5,7 @@ __main:
 	MOV R4,R3				@Save the prime state1
 	BL SELECT2				@Select pair 2
 	MOV R5,R3				@Save the prime state2
+	B EXIT					@Finish RSA
 
 SELECT1:
 	MOV R0,R11				@Select pair number1
@@ -33,14 +34,10 @@ UP:
 
 NOTPRIME:
 	MOV R3,#0               @The number is not prime
-	B STOP                  @Jump STOP
 
 PRIME:
 	MOV R3,#1               @The number is prime
 
-STOP:
-	B EXIT                  @Jump EXIT
- 
 DIVISION:                   @Function for division operation
 	MOV R8,R0               @Copy of data from main function
 	MOV R9,R2               @Copy of divider from main function
