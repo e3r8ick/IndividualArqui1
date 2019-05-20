@@ -102,7 +102,7 @@ GENERATOR:
 
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
-	STR R4,=0x00000444		@ save register
+	STR R4,[0x00000444]		@ save register
 	LDR R7,=0x00000444		@ get register
 
 EXIT:						@Finish
