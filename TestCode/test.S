@@ -1,22 +1,40 @@
-.section .text
-.global _start
+AREA RSA, CODE
+		ENTRY
+		EXPORT __main
 
-_start:
-    push {r11, lr}    /* Start of the prologue. Saving Frame Pointer and LR onto the stack */
-    add r11, sp, #0   /* Setting up the bottom of the stack frame */
-    sub sp, sp, #16   /* End of the prologue. Allocating some buffer on the stack */
-    mov r0, #1        /* setting up local variables (a=1). This also serves as setting up the first parameter for the max function */
-    mov r1, #2        /* setting up local variables (b=2). This also serves as setting up the second parameter for the max function */
-    bl max            /* Calling/branching to function max */
-    sub sp, r11, #0   /* Start of the epilogue. Readjusting the Stack Pointer */
-    pop {r11, pc}     /* End of the epilogue. Restoring Frame pointer from the stack, jumping to previously saved LR via direct load into PC */
+__main
+	 MOV R0,#12               ;Number to check
+	 CMP R0,#01               ;Comparing with 01
+	 BEQ PRIME                ;If equal => prime
+	 CMP R0,#02               ;Compare with 02
+	 BEQ PRIME                ;If equal => prime
+	 MOV R1,R0                ;Copy the number in R1
+	 MOV R2,#02               ;Initial divider
+UP                     
+	 BL DIVISION              ;Call for division sub-function
+	 CMP R8,#00               ;Compare remainder with 0
+	 BEQ NOTPRIME        ;If equal => not prime
+	 ADD R2,R2,#01          ;If not increment divider and check
+	 CMP R2,R1                 ;Compare divider with the number
+	 BEQ PRIME                ;All possible numbers are done => prime
+	 B UP                            ;If not repeat until end
+NOTPRIME 
+	 LDR R3,=0x00000000       ;The number is not prime
+	 B STOP                             ;Jump STOP
+PRIME 
+	LDR R3,=0x11111111       ;The number is prime
+STOP
+	B EXIT                             ;Jump EXIT
 
-max:
-    push {r11}        /* Start of the prologue. Saving Frame Pointer onto the stack */
-    add r11, sp, #0   /* Setting up the bottom of the stack frame */
-    sub sp, sp, #12   /* End of the prologue. Allocating some buffer on the stack */
-    cmp r0, r1        /* Implementation of if(a<b) */
-    movlt r0, r1      /* if r0 was lower than r1, store r1 into r0 */
-    add sp, r11, #0   /* Start of the epilogue. Readjusting the Stack Pointer */
-    pop {r11}         /* restoring frame pointer */
-    bx lr             /* End of the epilogue. Jumping back to main via LR register */
+DIVISION                                ;Function for division operation
+	 MOV R8,R0                ;Copy of data from main function
+	 MOV R9,R2                ;Copy of divider from main function
+LOOP                     
+	 SUB R8,R8,R9              ;Successive subtraction for division
+	 ADD R10,R10,#01        ;Counter for holding the result of division
+	 CMP R8,R9                  ;Compares for non-zero result
+	 BPL LOOP                    ;Repeats the loop if subtraction is still needed
+	 MOV PC,LR                 ;Return back to main function
+
+EXIT
+	END					  ;End the function
