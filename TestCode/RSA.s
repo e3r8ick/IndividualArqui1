@@ -1,3 +1,7 @@
+.data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
+	var1: .word 3  /* variable 1 in memory */
+	var2: .word 4  /* variable 2 in memory */
+
 .global __main
 .func __main
 
@@ -102,9 +106,12 @@ GENERATOR:
 
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
-	MOV R5,#328				@ init the array
-	STR R4,[R5,#0]			@ save register
-	LDR R7,=0x0000328		@ get register
+	LDR R5,adr_var1			@ init the array
+	STR R4,[R5]			@ save register
+	LDR R7,adr_var1		@ get register
 
 EXIT:						@Finish
+	bkpt
 
+adr_var1: .word var1  /* address to var1 stored here */
+adr_var2: .word var2  /* address to var2 stored here */
