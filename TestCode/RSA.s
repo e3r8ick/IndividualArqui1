@@ -1,6 +1,5 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
-	var_a: .word 3  /* variable 1 in memory */
-	var_b: .word 4  /* variable 2 in memory */
+	array_between: .word 3  /* variable 1 in memory */
 
 .text
 .global __main
@@ -106,14 +105,16 @@ GENERATOR:
 
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
-	LDR R5,=adr_var_a		@ init the array
+	LDR R5,=adr_array_bet	@ init the array
 	LDR R6,[R5]				@ init the array
 	STR R4,[R6]				@ save register
-	LDR R7,=adr_var_a		@ get register
+	LDR R8,[R6]				@ get register
+	ADD R4,R4,#1			@ Array element +1
+	LDR R6,[R5]				@ init the array
+	STR R4,[R6]				@ save register
 	LDR R8,[R6]				@ get register
 
 EXIT:						@Finish
 	bkpt
 
-adr_var_a: .word var_a  /* address to var1 stored here */
-adr_var_b: .word var_b  /* address to var2 stored here */
+adr_array_bet: .word array_between  /* address to var1 stored here */
