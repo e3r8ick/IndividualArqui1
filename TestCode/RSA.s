@@ -1,5 +1,6 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
 	array_bet: .word 3  /* variable 1 in memory */
+	avar_b: .word 4  /* variable 2 in memory */
 
 .text
 .global __main
@@ -121,3 +122,4 @@ EXIT:						@Finish
 	bkpt
 
 adr_array_bet: .word array_bet  /* address to var1 stored here */
+adr_var_b: .word var_b  /* address to var2 stored here */
