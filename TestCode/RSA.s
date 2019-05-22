@@ -1,4 +1,6 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
+	var_a: .word 3  /* variable 1 in memory */
+	var_b: .word 4  /* variable 2 in memory */
 
 .text
 .global __main
@@ -108,8 +110,8 @@ ARRAY_GENERATOR:
 	STR R4,[R5]				@ save register
 	LDR R7,adr_var1			@ get register
 
-Darea:
-   	SPACE  8000
-
 EXIT:						@Finish
 	bkpt
+
+adr_var_a: .word var_a  /* address to var1 stored here */
+adr_var_b: .word var_b  /* address to var2 stored here */
