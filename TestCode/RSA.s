@@ -110,12 +110,12 @@ ARRAY_GENERATOR:
 	MOV R6,#0				@ Direction for save every element
 	LDR R7,=adr_array_bet	@ load the direction
 	LDR R8,[R7]				@ load the element
-	STR R8,[R7,R6]			@ save the element array
+	STR R8,[8,R6]			@ save the element array
 	ADD R4,R4,#1			@ R4++
 	ADD R6,R4,#4			@ Next direction
 	SUB R5,R5,#1			@ counter --
 	CMP R5,#0				@ R5 = 0?
-	LDR R9,[R7,R6]			@ Debug print
+	LDR R9,[R8,R6]			@ Debug print
 	BNE ARRAY_GENERATOR		@ loop for create the array
 
 EXIT:						@Finish
