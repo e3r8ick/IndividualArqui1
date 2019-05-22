@@ -106,9 +106,9 @@ GENERATOR:
 
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
-	LDR R5,adr_var1			@ init the array
+	LDR R5,=adr_var_a		@ init the array
 	STR R4,[R5]				@ save register
-	LDR R7,adr_var1			@ get register
+	LDR R7,=adr_var_a		@ get register
 
 EXIT:						@Finish
 	bkpt
