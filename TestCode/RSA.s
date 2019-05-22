@@ -106,17 +106,17 @@ GENERATOR:
 
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
-	LDR R5,=adr_var_a		@ init the array
+	LDR R5,=adr_array_bet	@ init the array
 	LDR R6,[R5]				@ init the array
 	STR R4,[R6]				@ save register
 	LDR R8,[R6]				@ get register
 	ADD R4,R4,#1			@ Array element +1
 	LDR R6,[R5]				@ init the array
-	STR R4,[R6]				@ save register
-	LDR R8,[R6]				@ get register
+	STR R4,[R6,#4]			@ save register
+	LDR R8,[R6,#4]				@ get register
 
 EXIT:						@Finish
 	bkpt
 
-adr_var_a: .word var_a  /* address to var1 stored here */
+adr_array_bet: .word var_a  /* address to var1 stored here */
 adr_var_b: .word var_b  /* address to var2 stored here */
