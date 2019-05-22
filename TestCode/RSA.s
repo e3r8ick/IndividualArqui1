@@ -1,9 +1,9 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
-	var1: .word 3  /* variable 1 in memory */
-	var2: .word 4  /* variable 2 in memory */
+	var_a: .word 3  /* variable 1 in memory */
+	var_b: .word 4  /* variable 2 in memory */
 
+.text
 .global __main
-.func __main
 
 __main:
 	MOV R11, #17			@ Key pair number1
@@ -113,5 +113,5 @@ ARRAY_GENERATOR:
 EXIT:						@Finish
 	bkpt
 
-adr_var1: .word var1  /* address to var1 stored here */
-adr_var2: .word var2  /* address to var2 stored here */
+adr_var_a: .word var_a  /* address to var1 stored here */
+adr_var_b: .word var_b  /* address to var2 stored here */

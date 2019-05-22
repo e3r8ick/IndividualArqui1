@@ -1,16 +1,30 @@
-.data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
-var1: .word 3  /* variable 1 in memory */
-var2: .word 4  /* variable 2 in memory */
 
-.text          /* start of the text (code) section */ 
-.global _start
-
-_start:
-    ldr r0, adr_var1  @ load the memory address of var1 via label adr_var1 into R0 
-    ldr r1, adr_var2  @ load the memory address of var2 via label adr_var2 into R1 
-    ldr r2, [r0]      @ load the value (0x03) at memory address found in R0 to register R2  
-    str r2, [r1]      @ store the value found in R2 (0x03) to the memory address found in R1 
-    bkpt             
-
-adr_var1: .word var1  /* address to var1 stored here */
-adr_var2: .word var2  /* address to var2 stored here */
+		AREA 		LDRlabel, CODE,READONLY
+		ENTRY								; Mark first instruction to execute.
+start	
+		BL		func1						; Branch to first subroutine.
+		BL		func2						; Branch to second subroutine.
+stop		MOV		r0, #0x18						; angel_SWIreason_ReportException
+		LDR		r1, =0x20026						; ADP_Stopped_ApplicationExit
+		SWI 		0x123456						; Angel semihosting ARM SWI
+func1
+		LDR 		r0, =start						; => LDR R0,[PC, #offset to
+										; Litpool 1]
+		LDR 		r1, =Darea + 12 						; => LDR R1,[PC, #offset to
+										; Litpool 1]
+		LDR 		r2, =Darea + 6000						; => LDR R2, [PC, #offset to
+										; Litpool 1]
+		MOV		pc,lr						; Return
+		LTORG								; Literal Pool 1
+func2
+		LDR		r3, =Darea + 6000 						; => LDR r3, [PC, #offset to
+										; Litpool 1]
+										; (sharing with previous literal).
+		; LDR		r4, =Darea + 6004						; If uncommented produces an
+										; error as Litpool 2 is out of range.
+		MOV		pc, lr						; Return
+Darea		% 		8000						; Starting at the current location, 
+										; clears a 8000 byte area of memory
+										; to zero.
+		END 								; Literal Pool 2 is out of range of
+										; the LDR instructions above.
