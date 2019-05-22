@@ -115,7 +115,7 @@ ARRAY_GENERATOR:
 	SUB R5,R5,#1			@ counter --
 	CMP R5,#0				@ R5 = 0?
 	LDR R9,[R7,R6]
-	BNE ARRAY_GENERATOR		@ loop for create the array
+	@BNE ARRAY_GENERATOR		@ loop for create the array
 
 EXIT:						@Finish
 	bkpt
