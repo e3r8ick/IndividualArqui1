@@ -1,6 +1,5 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
-	var_a: .word 3  /* variable 1 in memory */
-	var_b: .word 4  /* variable 2 in memory */
+	array_bet: .word 3  /* variable 1 in memory */
 
 .text
 .global __main
@@ -106,17 +105,19 @@ GENERATOR:
 
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
-	LDR R5,=adr_array_bet	@ init the array
-	LDR R6,[R5]				@ init the array
-	STR R4,[R6]				@ save register
-	LDR R8,[R6]				@ get register
-	ADD R4,R4,#1			@ Array element +1
-	LDR R6,[R5]				@ init the array
-	STR R4,[R6,#4]			@ save register
-	LDR R8,[R6,#4]				@ get register
+	MOV R5,R3				@ Copy the L value to make a counter
+	MOV R6,#0				@ Direction for save every element
+	LDR R7,=adr_array_bet	@ load the direction
+	LDR R8,[R7]				@ load the element
+	STR R8,[R7,R6]			@ save the element array
+	ADD R4,R4,#1			@ R4++
+	ADD R6,R4,#4			@ Next direction
+	SUB R5,R5,#1			@ counter --
+	CMP R5,#0				@ R5 = 0?
+	LDR R9,[R7,R6]
+	BNE ARRAY_GENERATOR		@ loop for create the array
 
 EXIT:						@Finish
 	bkpt
 
-adr_array_bet: .word var_a  /* address to var1 stored here */
-adr_var_b: .word var_b  /* address to var2 stored here */
+adr_array_bet: .word array_bet  /* address to var1 stored here */
