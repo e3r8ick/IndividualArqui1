@@ -112,7 +112,7 @@ ARRAY_GENERATOR:
 	LDR R7,[R7]				@ load the element
 	STR R4,[R7,R6]			@ save the element array
 	ADD R4,R4,#1			@ R4++
-	ADD R6,R4,#4			@ Next direction
+	ADD R6,R6,#4			@ Next direction
 	SUB R5,R5,#1			@ counter --
 	CMP R5,#0				@ R5 = 0?
 	LDR R9,[R7,R6]			@ Debug print
