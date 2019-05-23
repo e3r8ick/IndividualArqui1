@@ -1,9 +1,9 @@
 .text
-.global gcd
-gcd:
-    mov r0, #17
-    mov r1, #29
-    cmp r0, r1     
-    subgt r0, r0, r1 
-    sublt r1, r1, r0 
-    bne gcd        
+.global GCD
+GCD:
+    MOV R0, #17
+    MOV R1, #29
+    CMP R0, R1     
+    SUBGT R0, R0, R1 
+    SUBLT R1, R1, R0 
+    bne GCD        
