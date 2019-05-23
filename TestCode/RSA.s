@@ -6,8 +6,10 @@
 .global __main
 
 __main:
-	MOV R11, #17			@ Key pair number1
-	MOV R12, #29            @ keY pair number2
+	@MOV R11, #17			@ Key pair number1
+	@MOV R12, #29            @ keY pair number2
+	MOV R11, #2			@ Key pair number1
+	MOV R12, #3            @ keY pair number2
 
 ITSPRIME_A:
 	MOV R0,R11				@ Move the first number to check
