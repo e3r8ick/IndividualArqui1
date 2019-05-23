@@ -134,13 +134,7 @@ GCD:						@ Determining the greatest common divisor
 	CMP R4,R5     			@ if R4 > R5 
 	SUBGT R4,R4,R5 			@ subtract r1 from r0 
 	SUBLT R5,R5,R4 			@ else subtract r0 from R5 
-	BNE GCD        			@ reached the end?
-	MOV R5,R3				@ get L
-	ADD R6,R6,#1			@ i++
-	MUL R8,R6,R9			@ next array item append address
-	LDR R4,[R7,R8]			@ load the next element
-	CMP R5,#1				@ if g != 1
-	BNE GCD					@ the next GCD
+	BNE GCD					@ loop
 
 
 MULT_INVERSE:
