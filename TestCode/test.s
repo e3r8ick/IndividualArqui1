@@ -1,14 +1,15 @@
 .text
 .global main
-.extern printf
 main:
-        push {ip, lr}
+        push {r7, lr}
 
-        ldr r0, =string
-        mov r1, #1024
-        bl printf
+        mov r0, #1
+        ldr r1, =string
+        mov r2, #12
+        mov r7, #4
+        svc #0
 
-        pop {ip, pc}
+        pop {r7, pc}
 
 .data
-string: .asciz "The number is: %d\n"
+string: .asciz "Hello World\n"
