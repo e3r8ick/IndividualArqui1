@@ -122,9 +122,10 @@ ARRAY_LOOP:
 VERIFY:						@ Verify that e and L(n) are coprime
 	MOV R5,R3				@ get L
 	MOV R6,#0				@ init i =0
+	MOV R9,#4				@ address offset
 	LDR	R7,=adr_array_bet	@ array address
 	LDR	R7,[R7]				@ array element
-	MUL R8,R6,#4			@ array item append address
+	MUL R8,R6,R9			@ array item append address
 	LDR R4,[R7,R8]			@ load the element
 
 GCD:						@ Determining the greatest common divisor
@@ -134,7 +135,7 @@ GCD:						@ Determining the greatest common divisor
 	BNE GCD        			@ reached the end?
 	MOV R5,R3				@ get L
 	ADD R6,R6,#1			@ i++
-	MUL R8,R6,#4			@ next array item append address
+	MUL R8,R6,R9			@ next array item append address
 	LDR R4,[R7,R8]			@ load the next element
 	CMP R5,#1				@ if g != 1
 	BNE GCD					@ the next GCD
