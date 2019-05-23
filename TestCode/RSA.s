@@ -107,18 +107,40 @@ GENERATOR:
 ARRAY_GENERATOR:
 	MOV R4,#1				@ init the array
 	MOV R5,R3				@ Copy the L value to make a counter
-	MOV R6,#0				@ Direction for save every element
-	LDR R7,=adr_array_bet	@ load the direction
+	MOV R6,#0				@ address for save every element
+	LDR R7,=adr_array_bet	@ load the address
 	LDR R7,[R7]				@ load the element
 
 ARRAY_LOOP:	
 	STR R4,[R7,R6]			@ save the element array
-	LDR R9,[R7,R6]			@ Debug print
 	ADD R4,R4,#1			@ R4++
-	ADD R6,R6,#4			@ Next direction
+	ADD R6,R6,#4			@ Next address
 	SUB R5,R5,#1			@ counter --
 	CMP R5,#0				@ R5 = 0?
-	BNE ARRAY_LOOP		@ loop for create the array
+	BNE ARRAY_LOOP			@ loop for create the array
+
+VERIFY:						@ Verify that e and L(n) are coprime
+	MOV R5,R3				@ get L
+	MOV R6,#0				@ init i =0
+	LDR	R7,=adr_array_bet	@ array address
+	LDR	R7,[R7]				@ array element
+	MUL R8,R6,#4			@ array item append address
+	LDR R4,[R7,R8]			@ load the element
+
+GCD:						@ Determining the greatest common divisor
+	CMP R4,R5     			@ if R4 > R5 
+	SUBGT R4,R4,R5 			@ subtract r1 from r0 
+	SUBLT R5,R5,R4 			@ else subtract r0 from R5 
+	BNE GCD        			@ reached the end?
+	MOV R5,R3				@ get L
+	ADD R6,R6,#1			@ i++
+	MUL R8,R6,#4			@ next array item append address
+	LDR R4,[R7,R8]			@ load the next element
+	CMP R5,#1				@ if g != 1
+	BNE GCD					@ the next GCD
+
+
+MULT_INVERSE:
 
 EXIT:						@Finish
 	bkpt
