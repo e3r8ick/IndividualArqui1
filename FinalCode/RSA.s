@@ -188,9 +188,9 @@ ENCRYPT:
 	MOV R3,#38				@ Message = 38
 
 POW:
-    MOV R4,#2           	@ number to pow
-    MOV R5,#2           	@ number to pow
-    MOV R6,#3           	@ the pow
+    MOV R4,R3           	@ number to pow
+    MOV R5,R3           	@ number to pow
+    MOV R6,R1           	@ the pow
     CMP R6,#1           	@ if pow = 1
     BEQ MOD
 
