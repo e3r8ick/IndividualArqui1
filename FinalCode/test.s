@@ -10,7 +10,7 @@ POW:
 POW_AUX:
     MUL R0,R3,R0        @ x*x
     SUB R1,R1,#1        @ i--
-    CMP R1,#0           @ i == 0
+    CMP R1,#1           @ i == 1
     BNE POW_AUX         @ loot
 
 NEXT:
