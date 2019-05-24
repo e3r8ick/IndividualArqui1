@@ -4,7 +4,7 @@ POW:
     MOV R0,#2           @ number to pow
     MOV R3,#2           @ number to pow
     MOV R1,#3           @ the pow
-    CMP R2,#1           @ if pow = 1
+    CMP R1,#1           @ if pow = 1
     BEQ NEXT
 
 POW_AUX:
