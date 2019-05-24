@@ -1,6 +1,6 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
 	array_bet: .word 3  /* variable 1 in memory */
-	avar_b: .word 4  /* variable 2 in memory */
+	message: .word 4  /* variable 2 in memory */
 
 .text
 .global __main
@@ -182,12 +182,16 @@ MULT_RETURN:
 DEF_VALUES:					@ R0 = n
 	MOV R1,R9				@ e
 	MOV R2,R10				@ d
+	ADD R2,R2,#1			@ d
 
 ENCRYPT:
+	MOV R3,#38				@ Message = 38
+	MOV R4,#12 MOD 7   		@ R4 = 5
+    MOV R5,#99 MOD 10  		@ R5 = 9
 
 
 EXIT:						@Finish
 	bkpt
 
 adr_array_bet: .word array_bet  /* address to var1 stored here */
-adr_var_b: .word var_b  /* address to var2 stored here */
+adr_message: .word message  /* address to var2 stored here */
