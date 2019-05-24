@@ -186,7 +186,6 @@ DEF_VALUES:					@ R0 = n
 
 ENCRYPT:
 	MOV R3,#38				@ Message = 38
-	MOD R4,R3,#12 
 
 
 EXIT:						@Finish
