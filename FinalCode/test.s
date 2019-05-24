@@ -5,7 +5,7 @@ POW:
     MOV R1,#3           @ the pow
     MOV R2,#3           @ i = pow
     CMP R2,#1           @ if pow = 1
-    B NEXT
+    BEQ NEXT
 
 POW_AUX:
     MUL R4,R0,R0        @ x*x
