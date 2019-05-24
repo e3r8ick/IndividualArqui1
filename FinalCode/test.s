@@ -1,18 +1,16 @@
 .text
 .global pow
-pow:
-    CMP r0, #0
-    MOVEQ r0, #1
-    BXEQ lr
-    TST r0, #1
-    BEQ skip
-    SUB r0, r0, #1
-    BL pow
-    MUL r0, r1, r0
-    BX lr
-    
-skip:
-    LSR r0, #1
-    BL pow
-    MUL r3, r0, r3
-    BX lr
+POW:
+    MOV R0,#2           @ number to pow
+    MOV R1,#3           @ the pow
+    MOV R2,#3           @ i = pow
+    CMP R2,#1           @ if pow = 1
+    B NEXT
+
+POW_AUX:
+    MUL R4,R0,R0        @ x*x
+    SUB R2,#1           @ i--
+    CMP R2,#0           @ i == 0
+    BNE POW_AUX         @ loot
+
+NEXT:
