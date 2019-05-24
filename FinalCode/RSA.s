@@ -192,7 +192,7 @@ POW:
     MOV R5,#2           @ number to pow
     MOV R6,#3           @ the pow
     CMP R6,#1           @ if pow = 1
-    BEQ NEXT
+    BEQ MOD
 
 POW_AUX:
     MUL R4,R5,R4        @ x*x
@@ -200,6 +200,8 @@ POW_AUX:
     CMP R6,#1           @ i == 1
     BNE POW_AUX         @ loot
 
+MOD:
+	MOV R9,#1
 
 EXIT:						@Finish
 	bkpt
