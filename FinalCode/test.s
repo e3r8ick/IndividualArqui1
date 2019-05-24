@@ -8,7 +8,7 @@ POW:
     BEQ NEXT
 
 POW_AUX:
-    MUL R0,R0,R3        @ x*x
+    MUL R0,R3,R0        @ x*x
     SUB R1,R1,#1        @ i--
     CMP R1,#0           @ i == 0
     BNE POW_AUX         @ loot
