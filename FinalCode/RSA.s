@@ -181,7 +181,7 @@ MULT_RETURN:
 
 DEF_VALUES:					@ R0 = n
 	MOV R1,R7				@ e
-	MOV R2,R5				@ d
+	MOV R2,R10				@ d
 
 ENCRYPT:
 
