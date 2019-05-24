@@ -149,7 +149,7 @@ MULT_CHECK:
 DIVISION:
 	MOV R1,R9   			@ divide R1
 	MOV R2,R4     			@ by R2
-	MOV R0,#0     			@ initialise counter
+	MOV R10,#0     			@ initialise counter
 
 DIVISION_AUX:
 	SUBS R1,R1,R2  			@ temp_L/e
