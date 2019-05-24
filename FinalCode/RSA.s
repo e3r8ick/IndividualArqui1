@@ -188,17 +188,17 @@ ENCRYPT:
 	MOV R3,#38				@ Message = 38
 
 POW:
-    MOV R4,#2           @ number to pow
-    MOV R5,#2           @ number to pow
-    MOV R6,#3           @ the pow
-    CMP R6,#1           @ if pow = 1
+    MOV R4,#2           	@ number to pow
+    MOV R5,#2           	@ number to pow
+    MOV R6,#3           	@ the pow
+    CMP R6,#1           	@ if pow = 1
     BEQ MOD
 
 POW_AUX:
-    MUL R4,R5,R4        @ x*x
-    SUB R6,R6,#1        @ i--
-    CMP R6,#1           @ i == 1
-    BNE POW_AUX         @ loot
+    MUL R4,R5,R4       	 	@ x*x
+    SUB R6,R6,#1        	@ i--
+    CMP R6,#1           	@ i == 1
+    BNE POW_AUX         	@ loot
 
 MOD:
 	MOV R9,#1
