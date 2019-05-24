@@ -74,7 +74,6 @@ def generate_keypair(p, q):
         
         #Return public and private keypair
         #Public key is (e, n) and private key is (d, n)
-        print (e,n,d,n)
         return ((e, n), (d, n))
 
 def encrypt(public_k, plaintext):

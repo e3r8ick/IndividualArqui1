@@ -6,8 +6,8 @@
 .global __main
 
 __main:
-	MOV R11, #17			@ Key pair number1
-	MOV R12, #29            @ keY pair number2
+	MOV R11, #17			@ p
+	MOV R12, #29            @ q
 
 ITSPRIME_A:
 	MOV R0,R11				@ Move the first number to check
@@ -126,7 +126,7 @@ VERIFY:						@ Verify that e and L(n) are coprime
 	LDR	R7,=adr_array_bet	@ array address
 	LDR	R7,[R7]				@ array element
 	MUL R8,R6,R9			@ array item append address
-	LDR R4,[R7,R8]			@ load the element
+	LDR R4,[R7,R8]			@ load the element e
 
 GCD:						@ Determining the greatest common divisor
 	CMP R4,R5     			@ if R4 > R5 
@@ -180,7 +180,7 @@ MULT_RETURN:
 	BEQ IT_IS
 
 DEF_VALUES:					@ R0 = n
-	MOV R1,R4				@ e
+	MOV R1,R7				@ e
 	MOV R2,R5				@ d
 
 ENCRYPT:
