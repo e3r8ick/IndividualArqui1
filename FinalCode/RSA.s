@@ -141,24 +141,49 @@ MULT_INVERSE:
 	MOV R7,#1				@ x2 = 1
 	MOV R8,#1				@ y1 = 1
 	MOV R9,R3				@ temp_L = L
+
+MULT_CHECK:	
 	CMP R4,#0				@ e > 0
-	BEQ MULT_AUX
+	BEQ MULT_RETURN
 
 DIVISION:
 	MOV R1,R9   			@ divide R1
 	MOV R2,R4     			@ by R2
-	MOV R3,#0     			@ initialise counter
+	MOV R0,#0     			@ initialise counter
 
 DIVISION_AUX:
-	SUBS R1,R1,R2  			@ subtract R2 from
-	ADD R3,R3,#1  			@ add 1 to counter,
-	BHI DIVISION_AUX  		@ branch to start of
-                   			@ loop on condition
-                   			@ Higher, i.e. R1 is
-                   			@ still greater than
-                   			@ R2. Answer now in R0
+	SUBS R1,R1,R2  			@ temp_L/e
+	ADD R10,R10,#1  		@ add 1 to counter,
+	BHI DIVISION_AUX  		@ branch to start of Answer now in R0=3
 
 MULT_AUX:
+	MUL R1,R10,R4			@ temp1 * e
+	SUB R2,R9,R1			@ temp2 = temp_L - temp1 * e
+	MOV R9,R4				@ temp_L = e
+	MOV R4,R2				@ e = temp2
+	MUL R1,R10,R6			@ temp1* x1
+	SUB R2,R7,R1			@ x = x2- temp1* x1
+	MUL R1,R10,R8			@ temp1 * y1
+	SUB R1,R7,R1			@ y = d - temp1 * y1
+	MOV R7,R6				@ x2 = x1
+	MOV R6,R6				@ x1 = x
+	MOV R5,R8				@ d = y1
+	MOV R8,R1				@ y1 = y
+	B MULT_CHECK
+
+IT_IS:
+	ADD R10,R5,R3			@ d + L
+	B DEF_VALUES
+
+MULT_RETURN:
+	CMP R4,#1				@ L == 1?
+	BEQ IT_IS
+
+DEF_VALUES:					@ R0 = n
+	MOV R1,R4				@ e
+	MOV R2,R5				@ d
+
+ENCRYPT:
 
 
 EXIT:						@Finish
