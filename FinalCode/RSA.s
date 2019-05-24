@@ -136,6 +136,30 @@ GCD:						@ Determining the greatest common divisor
 
 
 MULT_INVERSE:
+	MOV R5,#0				@ d = 0
+	MOV R6,#0				@ x1 = 0
+	MOV R7,#1				@ x2 = 1
+	MOV R8,#1				@ y1 = 1
+	MOV R9,R3				@ temp_L = L
+	CMP R4,#0				@ e > 0
+	BEQ MULT_AUX
+
+DIVISION:
+	MOV R1,R9   			@ divide R1
+	MOV R2,R4     			@ by R2
+	MOV R3,#0     			@ initialise counter
+
+DIVISION_AUX:
+	SUBS R1,R1,R2  			@ subtract R2 from
+	ADD R3,R3,#1  			@ add 1 to counter,
+	BHI DIVISION_AUX  		@ branch to start of
+                   			@ loop on condition
+                   			@ Higher, i.e. R1 is
+                   			@ still greater than
+                   			@ R2. Answer now in R0
+
+MULT_AUX:
+
 
 EXIT:						@Finish
 	bkpt
