@@ -15,18 +15,22 @@ __main:
     cmp R0, #0
     bne ReadError @ branch if there was an error
 
-.data
-    ReadParams:
-.word 0 @ the file handle
-.word InputBuffer @ address of input buffer
-.word 80 @ number of bytes to read
-    InputBuffer:
-.skip 80
-    OpenParams:
-.word FileName
-.word FileNameEnd-FileName @ length of filename
-.word 0 @ File mode = read
-    FileName:
-.ascii "params.txt" @ name without final NUL byte
-    FileNameEnd:
-.byte 0 @ the NUL byte
+ReadError:
+
+OpenError:
+
+    .data
+ReadParams:
+    .word 0 @ the file handle
+    .word InputBuffer @ address of input buffer
+    .word 80 @ number of bytes to read
+InputBuffer:
+    .skip 80
+OpenParams:
+    .word FileName
+    .word FileNameEnd-FileName @ length of filename
+    .word 0 @ File mode = read
+FileName:
+    .ascii "params.txt" @ name without final NUL byte
+FileNameEnd:
+    .byte 0 @ the NUL byte
