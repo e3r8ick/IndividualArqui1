@@ -4,7 +4,8 @@
 @openat call
      @syscall's arguments
      mov R0, #100
-     ldr R1, pfname_addr
+     ldr R7, =pfname_addr
+     ldr R1, [R7]
      mov R2, #2
      mov R8, #56 @syscall R1__NR_openat
      svc #0
