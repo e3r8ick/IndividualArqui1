@@ -234,7 +234,7 @@ POW_AUX_D:
     BNE POW_AUX         	@ loot
 
 
-DIVISION_MOD_d:				@ x - (n*int(x/n))
+DIVISION_MOD_D:				@ x - (n*int(x/n))
 	MOV R7,R4   			@ x
 	MOV R8,R0     			@ n
 	MOV R10,#0     			@ initialise counter
