@@ -185,7 +185,8 @@ DEF_VALUES:					@ R0 = n
 	ADD R2,R2,#1			@ d
 
 ENCRYPT:
-	MOV R3,#374				@ Message = 38
+	MOV R3,#187				@ Message = 187
+	MUL R3,R3,#2
 
 POW:
     MOV R4,R3           	@ number to pow (a)
