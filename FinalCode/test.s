@@ -1,6 +1,8 @@
+.data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
+	pfname: .asciz "params.txt"
 @openat call
      @syscall's arguments
-     mov R0, -100
+     mov R0, #100
      ldr R1, pfname_addr
      mov R2, #2
      mov R8, #56 @syscall R1__NR_openat
@@ -15,3 +17,5 @@
      mov R0, R10
      mov R8, #57 @syscall __NR_close
      svc #0
+
+pfname_addr: .word pfname  /* address to var1 stored here */
