@@ -1,22 +1,4 @@
 # IndividualArqui1
-##########STEPS TO EMULATE########################################
-
--> Follow this tutorial
-https://azeria-labs.com/emulate-raspberry-pi-with-qemu/
-
--> in the initialConfig 
-bash run.sh
-
--> in the emulator 
-as RSA.s -o rsa.o
-
-ld rsa.o -o rsa
-
-./rsa
-
--> for debuggin
-
-gdb rsa
 
 ##########COMANDS###################################################
 layout asm      # Mostrar el código 
