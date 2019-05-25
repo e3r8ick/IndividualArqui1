@@ -97,11 +97,11 @@ def decrypt(private_k, ciphertext):
 def rsa(p,q, message):
     public, private = generate_keypair(p, q)
     print "Your public key is ", public ," and your private key is ", private
-    encrypted_msg = encrypt(private, message)
+    encrypted_msg = encrypt(public, message)
     print "Your encrypted message is: "
     print ''.join(map(lambda x: str(x), encrypted_msg))
     print "Decrypting message with public key ", public ," . . ."
     print "Your message is:"
-    print decrypt(public, encrypted_msg)
+    print decrypt(private, encrypted_msg)
 
-rsa(17,29,"erick")
+rsa(11,17,"erick")
