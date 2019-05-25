@@ -188,20 +188,32 @@ ENCRYPT:
 	MOV R3,#38				@ Message = 38
 
 POW:
-    MOV R4,R3           	@ number to pow
-    MOV R5,R3           	@ number to pow
-    MOV R6,R1           	@ the pow
+    MOV R4,R3           	@ number to pow (a)
+    MOV R5,R3           	@ number to pow (a)
+    MOV R6,R1           	@ the pow (b)
     CMP R6,#1           	@ if pow = 1
-    BEQ MOD
+    BEQ DIVISION_MOD
 
 POW_AUX:
-    MUL R4,R5,R4       	 	@ x*x
+    MUL R4,R5,R4       	 	@ x*x (a^b)
     SUB R6,R6,#1        	@ i--
     CMP R6,#1           	@ i == 1
     BNE POW_AUX         	@ loot
 
+
+DIVISION_MOD:				@ x - (n*int(x/n))
+	MOV R7,R4   			@ x
+	MOV R8,R0     			@ n
+	MOV R10,#0     			@ initialise counter
+
+DIVISION_AUX_MOD:
+	SUBS R7,R7,R8  			@ temp_L/e
+	ADD R10,R10,#1  		@ add 1 to counter,
+	BHI DIVISION_AUX_MOD  	@ branch to start of Answer now in R0=3 
+
 MOD:
-	MOV R9,#1
+	MUL R9,R8,R10			@ n*int(x/n)
+	SUB R9,R4,R9			@ x - (n*int(x/n))
 
 EXIT:						@Finish
 	bkpt

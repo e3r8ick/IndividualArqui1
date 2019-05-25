@@ -80,7 +80,7 @@ def encrypt(public_k, plaintext):
     #Unpack the key 
     key, n = public_k
     #Convert each letter in the plaintext to numbers based on the character
-    #using a^b mod m
+    #using a^b mod n
     cipher = [(ord(char) ** key) % n for char in plaintext]
     #Return the array of bytes
     return cipher
