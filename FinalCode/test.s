@@ -1,7 +1,7 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
-	array_bet: .word 3  /* variable 1 in memory */
     pfname: .asciz "params.txt"
     p: .asciz "params.txt"
+
 @openat call
      @syscall's arguments
      mov R0, #100
@@ -22,6 +22,5 @@
      mov R8, #57 @syscall __NR_close
      svc #0
 
-adr_array_bet: .word p  /* address to var1 stored here */
-p_addr: .word array_bet  /* address to var1 stored here */
+p_addr: .word p  /* address to var1 stored here */
 pfname_addr: .word pfname  /* address to var1 stored here */
