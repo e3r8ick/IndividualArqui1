@@ -215,6 +215,37 @@ DIVISION_AUX_MOD:
 
 MOD:
 	MUL R9,R8,R10			@ n*int(x/n)
+	SUB R9,R4,R9			@ c = x - (n*int(x/n))
+
+DECRYPT:
+	MOV R8,R9				@ Message to decrypt
+
+POW_D:
+    MOV R4,R9           	@ number to pow (a)
+    MOV R5,R9           	@ number to pow (a)
+    MOV R6,R2           	@ the pow (b)
+    CMP R6,#1           	@ if pow = 1
+    BEQ DIVISION_MOD
+
+POW_AUX_D:
+    MUL R4,R5,R4       	 	@ x*x (a^b)
+    SUB R6,R6,#1        	@ i--
+    CMP R6,#1           	@ i == 1
+    BNE POW_AUX         	@ loot
+
+
+DIVISION_MOD_d:				@ x - (n*int(x/n))
+	MOV R7,R4   			@ x
+	MOV R8,R0     			@ n
+	MOV R10,#0     			@ initialise counter
+
+DIVISION_AUX_MOD_D:
+	SUBS R7,R7,R8  			@ x/n
+	ADD R10,R10,#1  		@ add 1 to counter,
+	BHI DIVISION_AUX_MOD  	@ branch to start
+
+MOD_D:
+	MUL R9,R8,R10			@ n*int(x/n)
 	SUB R9,R4,R9			@ x - (n*int(x/n))
 
 EXIT:						@Finish
