@@ -207,11 +207,13 @@ DIVISION_MOD:				@ x - (n*int(x/n))
 	MOV R10,#0     			@ initialise counter
 
 DIVISION_AUX_MOD:
-	SUBS R7,R7,R8  			@ temp_L/e
+	SUBS R7,R7,R8  			@ x/n
 	ADD R10,R10,#1  		@ add 1 to counter,
-	BHI DIVISION_AUX_MOD  	@ branch to start of Answer now in R0=3 
+	BHI DIVISION_AUX_MOD  	@ branch to start
 
 MOD:
+	MVN R7,R7				@ complement
+	ADD R7,R7,#1			@ +1
 	MUL R9,R8,R10			@ n*int(x/n)
 	SUB R9,R4,R9			@ x - (n*int(x/n))
 
