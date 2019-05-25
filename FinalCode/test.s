@@ -22,5 +22,5 @@
      mov R8, #57 @syscall __NR_close
      svc #0
 
-p_addr: .asciz p  /* address to var1 stored here */
-pfname_addr: .asciz pfname  /* address to var1 stored here */
+p_addr: .word p  /* address to var1 stored here */
+pfname_addr: .word pfname  /* address to var1 stored here */
