@@ -82,6 +82,7 @@ def encrypt(public_k, plaintext):
     #Convert each letter in the plaintext to numbers based on the character
     #using a^b mod n
     cipher = [(ord(char) ** key) % n for char in plaintext]
+    print cipher
     #Return the array of bytes
     return cipher
 
@@ -90,6 +91,7 @@ def decrypt(private_k, ciphertext):
     key, n = private_k
     #Generate the plaintext based on the ciphertext and key using a^b mod m
     plain = [chr((char ** key) % n) for char in ciphertext]
+    print plain
     #Return the array of bytes as a string
     return ''.join(plain)
     
@@ -104,4 +106,4 @@ def rsa(p,q, message):
     print "Your message is:"
     print decrypt(private, encrypted_msg)
 
-rsa(11,17,"erick")
+rsa(11,17,"e")

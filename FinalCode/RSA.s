@@ -186,7 +186,7 @@ DEF_VALUES:					@ R0 = n
 
 ENCRYPT:
 	MOV R3,#187				@ Message = 187
-	MOV R4,#2				@ Message = 187
+	MOV R4,#2				@ Message = 187*2
 	MUL R3,R4,R3
 
 POW:
@@ -214,8 +214,6 @@ DIVISION_AUX_MOD:
 	BHI DIVISION_AUX_MOD  	@ branch to start
 
 MOD:
-	MVN R7,R7				@ complement
-	ADD R7,R7,#1			@ +1
 	MUL R9,R8,R10			@ n*int(x/n)
 	SUB R9,R4,R9			@ x - (n*int(x/n))
 
