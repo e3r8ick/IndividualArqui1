@@ -225,13 +225,13 @@ POW_D:
     MOV R5,R9           	@ number to pow (a)
     MOV R6,R2           	@ the pow (b)
     CMP R6,#1           	@ if pow = 1
-    BEQ DIVISION_MOD
+    BEQ DIVISION_MOD_D
 
 POW_AUX_D:
     MUL R4,R5,R4       	 	@ x*x (a^b)
     SUB R6,R6,#1        	@ i--
     CMP R6,#1           	@ i == 1
-    BNE POW_AUX         	@ loot
+    BNE POW_AUX_D         	@ loot
 
 
 DIVISION_MOD_D:				@ x - (n*int(x/n))
@@ -242,7 +242,7 @@ DIVISION_MOD_D:				@ x - (n*int(x/n))
 DIVISION_AUX_MOD_D:
 	SUBS R7,R7,R8  			@ x/n
 	ADD R10,R10,#1  		@ add 1 to counter,
-	BHI DIVISION_AUX_MOD  	@ branch to start
+	BHI DIVISION_AUX_MOD_D 	@ branch to start
 
 MOD_D:
 	MUL R9,R8,R10			@ n*int(x/n)
