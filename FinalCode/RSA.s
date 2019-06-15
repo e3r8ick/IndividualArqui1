@@ -252,3 +252,4 @@ EXIT:						@Finish
 
 adr_array_bet: .word array_bet  /* address to var1 stored here */
 adr_message: .word message  /* address to var2 stored here */
+

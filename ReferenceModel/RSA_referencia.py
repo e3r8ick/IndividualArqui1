@@ -91,6 +91,7 @@ def decrypt(private_k, ciphertext):
     key, n = private_k
     #Generate the plaintext based on the ciphertext and key using a^b mod m
     plain = [chr((char ** key) % n) for char in ciphertext]
+    plain = [chr((char ** key) % n) for char in ciphertext]
     print plain
     #Return the array of bytes as a string
     return ''.join(plain)
