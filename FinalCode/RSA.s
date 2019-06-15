@@ -6,8 +6,8 @@
 .global __main
 
 __main:
-	MOV R11, #2072378658			@ p
-	MOV R12, #3528970175            @ q
+	MOV R11,#0x3AA5			@ p
+	MOV R12,#0x4F9ED537            @ q
 
 ITSPRIME_A:
 	MOV R0,R11				@ Move the first number to check
