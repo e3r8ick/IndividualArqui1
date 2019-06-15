@@ -1,13 +1,13 @@
 .data          /* the .data section is dynamically created and its addresses cannot be easily predicted */
 	array_bet: .word 3  /* variable 1 in memory */
-	avar_b: .word 4  /* variable 2 in memory */
+	message: .word 4  /* variable 2 in memory */
 
 .text
 .global __main
 
 __main:
-	MOV R11, #17			@ Key pair number1
-	MOV R12, #29            @ keY pair number2
+	MOV R11, #11			@ p
+	MOV R12, #17            @ q
 
 ITSPRIME_A:
 	MOV R0,R11				@ Move the first number to check
@@ -126,7 +126,7 @@ VERIFY:						@ Verify that e and L(n) are coprime
 	LDR	R7,=adr_array_bet	@ array address
 	LDR	R7,[R7]				@ array element
 	MUL R8,R6,R9			@ array item append address
-	LDR R4,[R7,R8]			@ load the element
+	LDR R4,[R7,R8]			@ load the element e
 
 GCD:						@ Determining the greatest common divisor
 	CMP R4,R5     			@ if R4 > R5 
@@ -180,14 +180,75 @@ MULT_RETURN:
 	BEQ IT_IS
 
 DEF_VALUES:					@ R0 = n
-	MOV R1,R4				@ e
-	ADD R3,#1				@ d
+	MOV R1,R5				@ e
+	ADD R2,R3,#1			@ d
 
 ENCRYPT:
-	
+	MOV R3,#187				@ Message = 187
+	MUL R3,R4,R3
+	MOV R4,#2				@ Message = 187*2
+
+POW:
+    MOV R4,R3           	@ number to pow (a)
+    MOV R5,R3           	@ number to pow (a)
+    MOV R6,R1           	@ the pow (b)
+    CMP R6,#1           	@ if pow = 1
+    BEQ DIVISION_MOD
+
+POW_AUX:
+    MUL R4,R5,R4       	 	@ x*x (a^b)
+    SUB R6,R6,#1        	@ i--
+    CMP R6,#1           	@ i == 1
+    BNE POW_AUX         	@ loot
+
+
+DIVISION_MOD:				@ x - (n*int(x/n))
+	MOV R7,R4   			@ x
+	MOV R8,R0     			@ n
+	MOV R10,#0     			@ initialise counter
+
+DIVISION_AUX_MOD:
+	SUBS R7,R7,R8  			@ x/n
+	ADD R10,R10,#1  		@ add 1 to counter,
+	BHI DIVISION_AUX_MOD  	@ branch to start
+
+MOD:
+	MUL R9,R8,R10			@ n*int(x/n)
+	SUB R9,R4,R9			@ c = x - (n*int(x/n))
+
+DECRYPT:
+	MOV R8,R9				@ Message to decrypt
+
+POW_D:
+    MOV R4,R9           	@ number to pow (a)
+    MOV R5,R9           	@ number to pow (a)
+    MOV R6,R2           	@ the pow (b)
+    CMP R6,#1           	@ if pow = 1
+    BEQ DIVISION_MOD_D
+
+POW_AUX_D:
+    MUL R4,R5,R4       	 	@ x*x (a^b)
+    SUB R6,R6,#1        	@ i--
+    CMP R6,#1           	@ i == 1
+    BNE POW_AUX_D         	@ loot
+
+
+DIVISION_MOD_D:				@ x - (n*int(x/n))
+	MOV R7,R4   			@ x
+	MOV R8,R0     			@ n
+	MOV R10,#0     			@ initialise counter
+
+DIVISION_AUX_MOD_D:
+	SUBS R7,R7,R8  			@ x/n
+	ADD R10,R10,#1  		@ add 1 to counter,
+	BHI DIVISION_AUX_MOD_D 	@ branch to start
+
+MOD_D:
+	MUL R9,R8,R10			@ n*int(x/n)
+	SUB R9,R4,R9			@ x - (n*int(x/n))
 
 EXIT:						@Finish
 	bkpt
 
 adr_array_bet: .word array_bet  /* address to var1 stored here */
-adr_var_b: .word var_b  /* address to var2 stored here */
+adr_message: .word message  /* address to var2 stored here */

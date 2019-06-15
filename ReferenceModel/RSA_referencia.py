@@ -74,15 +74,15 @@ def generate_keypair(p, q):
         
         #Return public and private keypair
         #Public key is (e, n) and private key is (d, n)
-        print (e,n,d,n)
         return ((e, n), (d, n))
 
 def encrypt(public_k, plaintext):
     #Unpack the key 
     key, n = public_k
     #Convert each letter in the plaintext to numbers based on the character
-    #using a^b mod m
+    #using a^b mod n
     cipher = [(ord(char) ** key) % n for char in plaintext]
+    print cipher
     #Return the array of bytes
     return cipher
 
@@ -91,6 +91,7 @@ def decrypt(private_k, ciphertext):
     key, n = private_k
     #Generate the plaintext based on the ciphertext and key using a^b mod m
     plain = [chr((char ** key) % n) for char in ciphertext]
+    print plain
     #Return the array of bytes as a string
     return ''.join(plain)
     
@@ -98,11 +99,11 @@ def decrypt(private_k, ciphertext):
 def rsa(p,q, message):
     public, private = generate_keypair(p, q)
     print "Your public key is ", public ," and your private key is ", private
-    encrypted_msg = encrypt(private, message)
+    encrypted_msg = encrypt(public, message)
     print "Your encrypted message is: "
     print ''.join(map(lambda x: str(x), encrypted_msg))
     print "Decrypting message with public key ", public ," . . ."
     print "Your message is:"
-    print decrypt(public, encrypted_msg)
+    print decrypt(private, encrypted_msg)
 
-rsa(17,29,"erick")
+rsa(11,17,"e")
