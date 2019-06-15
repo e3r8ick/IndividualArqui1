@@ -181,10 +181,10 @@ MULT_RETURN:
 
 DEF_VALUES:					@ R0 = n
 	MOV R1,R4				@ e
-	MOV R2,R5				@ d
+	ADD R3,#1				@ d
 
 ENCRYPT:
-
+	
 
 EXIT:						@Finish
 	bkpt
